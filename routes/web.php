@@ -16,3 +16,6 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [AuthController::class, 'login'])->name('login');
 Route::post('/', [AuthController::class, 'authenticate']);
+Route::get('register', [AuthController::class, 'register'])->name('register');
+Route::post('register', [AuthController::class, 'register_user']);
+Route::get('email-verification/{token}/test-app', [AuthController::class, 'email_verify'])->name('email.verify');

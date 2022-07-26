@@ -9,15 +9,25 @@
 <body>
     @if (session('error'))
         <h1>{{ session('error') }}</h1>
-    @elseif (session('success'))
-        <h1>{{ session('success') }}</h1>
     @endif
-    <form action="{{ route('login') }}" method="post">
+    <form action="{{ route('register') }}" method="post">
         @csrf
         @method('POST')
         <table>
             <tr>
-                <td>Username</td>
+                <td>Nama</td>
+                <td>:</td>
+                <td>
+                    <input type="text" name="nama" value="{{ old('nama') }}" required>
+                </td>
+                @error('nama')
+                    <td>
+                        <strong>{{ $message }}</strong>
+                    </td>
+                @enderror
+            </tr>
+            <tr>
+                <td>Email</td>
                 <td>:</td>
                 <td>
                     <input type="text" name="email" value="{{ old('email') }}" required>
@@ -41,14 +51,15 @@
                 @enderror
             </tr>
             <tr>
-                <td colspan="2"></td>
-                <td>
-                    <button type="submit">Log In</button>
+                <td colspan="3">
+                    <input type="radio" name="tipe" id="tipe" value="lapak">Pelapak
+                    <input type="radio" name="tipe" id="tipe" value="user">Pelanggan
                 </td>
             </tr>
             <tr>
-                <td colspan="3">
-                    <a href="{{ route('register') }}">Register</a>
+                <td colspan="2"></td>
+                <td>
+                    <button type="submit">Register</button>
                 </td>
             </tr>
         </table>
